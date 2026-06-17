@@ -323,7 +323,9 @@ class TSEvaluation():
         """
         simulate_dict = dict()
         constraint_extra_args = dict()
+        print(f"Sample Data Constraint")
         for background_source in self.background_source_names:
+            print(f"Handling: {background_source}")
             # Case where we use the conditional best fits as constraint centers and simulated values
             if self.observed_test_stats is not None:
                 try:
