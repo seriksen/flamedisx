@@ -346,6 +346,11 @@ class TSEvaluation():
                 draw = self.sample_other_constraints[background_source](expected_background_counts)
                 constraint_extra_args[f'{background_source}_expected_counts'] = tf.cast(draw, fd.float_type())
 
+            else:
+                # Fallback: if it's not a standard constraint, we still need to pass 
+                # the expected counts so the WSLogConstraintFn has a reference.
+                constraint_extra_args[f'{background_source}_expected_counts'] = tf.cast(expected_background_counts, fd.float_type())
+
             simulate_dict[f'{background_source}_rate_multiplier'] = tf.cast(expected_background_counts, fd.float_type())
             simulate_dict[f'{signal_source_name}_rate_multiplier'] = tf.cast(mu_test, fd.float_type())
 
